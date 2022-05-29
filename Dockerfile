@@ -15,8 +15,6 @@ RUN  go build
 
 FROM ubuntu:20.04 as prod
 
-RUN apk --no-cache add ca-certificates
-
 WORKDIR /root/
 
 COPY --from=builder /go/src/go-wows-bot/go-wows-bot .
