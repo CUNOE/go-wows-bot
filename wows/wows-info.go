@@ -171,7 +171,7 @@ func wwsInfo(server string, accountId string, groupId int64) (imagePath string) 
 	//htmlData["lv10"] = r.Data.BattleCountAll.Field10
 	//htmlData["lv11"] = r.Data.BattleCountAll.Field11
 
-	createPath := filepath.Join(global.CurrentPath, "/temp/") + "\\" + r.Data.UserName + strconv.FormatInt(time.Now().Unix(), 10) + ".html"
+	createPath := filepath.Join(global.CurrentPath, "/temp/", r.Data.UserName) + strconv.FormatInt(time.Now().Unix(), 10) + ".html"
 	create, err := os.Create(createPath)
 	if err != nil {
 		return
@@ -188,7 +188,7 @@ func wwsInfo(server string, accountId string, groupId int64) (imagePath string) 
 		fmt.Println("execute error")
 	}
 
-	imagePath = ImageRender(createPath)
+	imagePath = ImageRender("file:///" + createPath)
 	log.Printf(createPath)
 	log.Printf(filepath.Join(global.CurrentPath, "/template/go-wws-info.html"))
 	log.Printf(imagePath)
@@ -200,12 +200,14 @@ func ImageRender(path string) string {
 		context.Background(),
 	)
 	defer cancel()
+	log.Printf(path)
 
 	var buf []byte
 
 	if err := chromedp.Run(ctx, fullScreenshot(path, 90, &buf)); err != nil {
 		log.Fatal(err)
 	}
+	path = regexp.MustCompile("^file:///").ReplaceAllString(path, "")
 	if err := ioutil.WriteFile(path+".png", buf, 0o644); err != nil {
 		log.Fatal(err)
 	}

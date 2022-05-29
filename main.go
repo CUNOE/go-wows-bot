@@ -1,20 +1,22 @@
 package main
 
 import (
+	"github.com/gin-gonic/gin"
 	"go-wows-bot/global"
 	"go-wows-bot/util"
 	"go-wows-bot/wows"
 	"log"
 	"os"
 	"path/filepath"
-
-	"github.com/gin-gonic/gin"
 )
 
 func main() {
 	global.CurrentPath = getCurrentAbPathByExecutable()
 	global.InitAll()
 
+	//Id := regexp.MustCompile(" [1-9]$").FindAllStringSubmatch("wws me ship Yamato 1", -1)
+
+	//fmt.Println(Id[0][0])
 	generServer(global.ServerStartPort)
 	//times := ""
 	//i, _ := strconv.Atoi(times)

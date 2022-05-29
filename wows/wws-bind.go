@@ -13,8 +13,10 @@ func bindUser(message string, group_id int64, qq_id string) {
 	server, username := reBind(message)
 	if serverApi.BindUserApi(server, username, qq_id) {
 		WriteMessage("绑定成功", group_id)
+		return
 	}
 	WriteMessage("绑定失败", group_id)
+	return
 }
 
 func reBind(message string) (server string, username string) {

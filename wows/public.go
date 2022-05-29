@@ -56,12 +56,15 @@ func wwsHelp(group_id int64) {
 	log.Printf("向群：%v发送帮助信息", group_id)
 
 	message := "帮助列表\n    " +
+		"服务器参考asia、eu、na、ru\n    " +
+		"下面的[][]代表可选项 请不要两个一起选择\n    " +
 		"wws help：获取帮助\n    " +
-		"wws bind/set/绑定 服务器 游戏昵称：绑定QQ与游戏账号\n    " +
-		"wws 查询绑定/查绑定/绑定列表[me]：查询指定用户的绑定账号\n    " +
-		"wws 切换绑定[id]：使用查绑定中的序号快速切换绑定账号\n    " +
-		"wws [服务器+游戏昵称][me]：查询账号总体战绩\n    " +
+		"wws bind/set/绑定 服务器 游戏昵称：绑定QQ与游戏账号 eg:wws set asia cunoe\n    " +
+		"wws 查询绑定/查绑定/绑定列表：查询已经绑定的账号 eg:wws 查询绑定\n    " +
+		"wws 切换绑定 [id]：使用查绑定中的序号快速切换绑定账号 eg:wws 切换绑定 1\n    " +
+		"wws [服务器+游戏昵称][me]：查询账号总体战绩 eg:wws asia cunoe或者wws me\n    " +
 		"wws [服务器+游戏昵称][me] recent [日期]：查询账号近期战绩，默认1天\n    " +
+		"wws [服务器+游戏昵称][me] ship [舰船名称] 序号（可不加 默认为0）：查询单船战绩 eg:wws Asia cunoe ship Yamato 1\n    " +
 		"wws [server][nation][ship.type]：查询战舰相关信息\n    " +
 		"[待开发] wws ship recent\n    " +
 		"[待开发] wws rank\n    " +
