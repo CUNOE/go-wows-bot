@@ -19,7 +19,7 @@ RUN apk --no-cache add ca-certificates
 
 WORKDIR /root/
 
-COPY --from=builder /go/src/go-wows-bot/app .
+COPY --from=builder /go/src/go-wows-bot/go-wows-bot .
 COPY --from=builder /go/src/go-wows-bot/template/ ./template/
 
 CMD ["./go-wows-bot"]
