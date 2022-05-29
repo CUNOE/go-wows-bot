@@ -13,12 +13,14 @@ COPY . .
 
 RUN  go build -o app
 
-FROM ubuntu:20.04 as prod
+FROM alpine:latest as prod
+
+RUN apk --no-cache add ca-certificates
 
 WORKDIR /root/
 
 COPY --from=builder /go/src/go-wows-bot/app .
 COPY --from=builder /go/src/go-wows-bot/template/ ./template/
 
-CMD ["/root/app"]
+CMD ["./app"]
 
