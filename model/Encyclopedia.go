@@ -48,3 +48,25 @@ type ShipType struct {
 		} `json:"AIRCARRIER"`
 	} `json:"data"`
 }
+
+type ShipSearch struct {
+	Code    int    `json:"code"`
+	Message string `json:"message"`
+	Data    []struct {
+		Id                int64       `json:"id"`
+		ShipNameNumbers   string      `json:"shipNameNumbers"`
+		ShipNameCn        string      `json:"shipNameCn"`
+		AnotherName       interface{} `json:"anotherName"`
+		ShipNameUpperCase interface{} `json:"shipNameUpperCase"`
+		Name              interface{} `json:"name"`
+		Country           string      `json:"country"`
+		ShipType          string      `json:"shipType"`
+		Tier              int         `json:"tier"`
+		ShipIdValue       string      `json:"shipIdValue"`
+		Special           interface{} `json:"special"`
+		ImgSmall          string      `json:"imgSmall"`
+		ImgLarge          string      `json:"imgLarge"`
+		ImgMedium         string      `json:"imgMedium"`
+	} `json:"data"`
+	QueryTime int `json:"queryTime"`
+}

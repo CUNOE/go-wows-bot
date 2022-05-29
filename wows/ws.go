@@ -5,6 +5,7 @@ import (
 	"github.com/gorilla/websocket" //这里使用的是 gorilla 的 websocket 库
 	"go-wows-bot/global"
 	"log"
+	"strconv"
 )
 
 var upgrader = websocket.Upgrader{
@@ -65,7 +66,7 @@ func ReadMessage(c *gin.Context) {
 		}
 
 		if msg.PostType == "message" && msg.MessageType == "group" {
-			Handle(msg.Message, msg.GroupId)
+			go Handle(msg.Message, msg.GroupId, strconv.FormatInt(msg.UserId, 10))
 		}
 	}
 
