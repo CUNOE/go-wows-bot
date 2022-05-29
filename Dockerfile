@@ -13,7 +13,7 @@ COPY . .
 
 RUN  go build
 
-FROM alpine:latest as prod
+FROM ubuntu:20.04 as prod
 
 RUN apk --no-cache add ca-certificates
 
