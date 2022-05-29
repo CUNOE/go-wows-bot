@@ -11,7 +11,7 @@ WORKDIR /go/src/go-wows-bot
 
 COPY . .
 
-RUN  go build -o app
+RUN  go build
 
 FROM alpine:latest as prod
 
@@ -22,5 +22,4 @@ WORKDIR /root/
 COPY --from=builder /go/src/go-wows-bot/app .
 COPY --from=builder /go/src/go-wows-bot/template/ ./template/
 
-CMD ["./app"]
-
+CMD ["./go-wows-bot"]
