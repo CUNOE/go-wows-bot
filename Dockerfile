@@ -20,5 +20,5 @@ WORKDIR /root/
 COPY --from=builder /go/src/go-wows-bot/app .
 COPY --from=builder /go/src/go-wows-bot/template/ ./template/
 
-CMD ["nohup ./app & && ./go-cqhttp"]
+CMD ["./app"]
 
