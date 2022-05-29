@@ -3,7 +3,6 @@ package wows
 import (
 	"context"
 	"fmt"
-	"github.com/chromedp/chromedp"
 	"go-wows-bot/global"
 	"go-wows-bot/serverApi"
 	"html/template"
@@ -15,6 +14,8 @@ import (
 	"strconv"
 	"strings"
 	"time"
+
+	"github.com/chromedp/chromedp"
 )
 
 func isInfo(message string, group_id int64, qq_id string) {
@@ -170,7 +171,7 @@ func wwsInfo(server string, accountId string, groupId int64) (imagePath string) 
 	//htmlData["lv10"] = r.Data.BattleCountAll.Field10
 	//htmlData["lv11"] = r.Data.BattleCountAll.Field11
 
-	createPath := filepath.Join(global.CurrentPath, "/data/") + "\\" + r.Data.UserName + strconv.FormatInt(time.Now().Unix(), 10) + ".html"
+	createPath := filepath.Join(global.CurrentPath, "/temp/") + "\\" + r.Data.UserName + strconv.FormatInt(time.Now().Unix(), 10) + ".html"
 	create, err := os.Create(createPath)
 	if err != nil {
 		return
@@ -188,6 +189,9 @@ func wwsInfo(server string, accountId string, groupId int64) (imagePath string) 
 	}
 
 	imagePath = ImageRender(createPath)
+	log.Printf(createPath)
+	log.Printf(filepath.Join(global.CurrentPath, "/template/go-wws-info.html"))
+	log.Printf(imagePath)
 	return
 }
 

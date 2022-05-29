@@ -122,7 +122,7 @@ func wwsRecentInfo(server string, accountId string, times string) (msg string, i
 	htmlData["hit"] = r.Data.Data.Hit
 	htmlData["historyData"] = setHistoryData(r)
 
-	createPath := filepath.Join(global.CurrentPath, "/data/") + "\\" + r.Data.UserName + strconv.FormatInt(time.Now().Unix(), 10) + "recent.html"
+	createPath := filepath.Join(global.CurrentPath, "/temp/") + "\\" + r.Data.UserName + strconv.FormatInt(time.Now().Unix(), 10) + "recent.html"
 	create, err := os.Create(createPath)
 	if err != nil {
 		return
@@ -142,5 +142,9 @@ func wwsRecentInfo(server string, accountId string, times string) (msg string, i
 	}
 
 	imagePath = ImageRender(createPath)
+
+	log.Printf(createPath)
+	log.Printf(filepath.Join(global.CurrentPath, "/template/go-wws-info-recent.html"))
+	log.Printf(imagePath)
 	return
 }

@@ -150,7 +150,7 @@ func wwsShipInfo(server string, accountId string, shipId string) (imagePath stri
 	htmlData["maxFragsBattle"] = r.Data.ShipInfo.ExtensionDataInfo.MaxFrags
 	htmlData["maxPlanesKilled"] = r.Data.ShipInfo.ExtensionDataInfo.MaxPlanesKilled
 
-	createPath := filepath.Join(global.CurrentPath, "/data/") + "\\" + r.Data.UserName + strconv.FormatInt(time.Now().Unix(), 10) + r.Data.ShipInfo.ShipInfo.NameCn + ".html"
+	createPath := filepath.Join(global.CurrentPath, "/temp/") + "\\" + r.Data.UserName + strconv.FormatInt(time.Now().Unix(), 10) + r.Data.ShipInfo.ShipInfo.NameCn + ".html"
 	create, err := os.Create(createPath)
 	if err != nil {
 		return
@@ -168,5 +168,9 @@ func wwsShipInfo(server string, accountId string, shipId string) (imagePath stri
 	}
 
 	imagePath = ImageRender(createPath)
+
+	log.Printf(createPath)
+	log.Printf(filepath.Join(global.CurrentPath, "/template/go-wws-ship.html"))
+	log.Printf(imagePath)
 	return
 }

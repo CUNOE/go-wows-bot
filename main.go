@@ -1,17 +1,18 @@
 package main
 
 import (
-	"github.com/gin-gonic/gin"
 	"go-wows-bot/global"
 	"go-wows-bot/util"
 	"go-wows-bot/wows"
 	"log"
-	"path"
-	"runtime"
+	"os"
+	"path/filepath"
+
+	"github.com/gin-gonic/gin"
 )
 
 func main() {
-	global.CurrentPath = getCurrentAbPathByCaller()
+	global.CurrentPath = getCurrentAbPathByExecutable()
 	global.InitAll()
 
 	generServer(global.ServerStartPort)
@@ -32,13 +33,13 @@ func generServer(port string) {
 	log.Printf("listen in %v", port)
 }
 
-func getCurrentAbPathByCaller() string {
-	var abPath string
-	_, filename, _, ok := runtime.Caller(0)
-	if ok {
-		abPath = path.Dir(filename)
+func getCurrentAbPathByExecutable() string {
+	exePath, err := os.Executable()
+	if err != nil {
+		log.Fatal(err)
 	}
-	return abPath
+	res, _ := filepath.EvalSymlinks(filepath.Dir(exePath))
+	return res
 }
 
 // TODO 内部启动go-cqhttp

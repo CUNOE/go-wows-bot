@@ -12,8 +12,8 @@ func InitAll() {
 }
 
 func delData() {
-	err := os.RemoveAll(filepath.Join(CurrentPath, "/data/"))
+	err := os.RemoveAll(filepath.Join(CurrentPath, "/temp/"))
 	util.ErrorHandle(err)
-	err = os.Mkdir(filepath.Join(CurrentPath, "/data/"), os.ModePerm)
+	err = os.Mkdir(filepath.Join(CurrentPath, "/temp/"), os.ModePerm)
 	util.ErrorHandle(err)
 }
